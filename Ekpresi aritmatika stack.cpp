@@ -33,39 +33,6 @@ total = (int) b % (int) a;
 return total;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 vector<string> stringToInfix(string str){
   vector<string> infix;
   string angka;

@@ -1,5 +1,5 @@
 #include <cmath>
-#include <cstudio>
+#include <cstdio>
 #include <vector>
 #include <iostream>
 #include <algorithm>
@@ -7,8 +7,8 @@
 using namespace std;
 
 bool isOperator(char ch) {
-vector<char> op = {'+', '-', '*', '/', '%'};
-return find(op.begin(), op.end(), ch) != op.end();
+	vector<char> op = {'+', '-', '*', '/', '%'};
+	return find(op.begin(), op.end(), ch) != op.end();
 }
 
 int precedence(string op) {
@@ -106,3 +106,36 @@ vector<string> infixToPostfix(vector<string>infix){
   }
   return postfix;
 }
+
+  double evaluate(vector<string>postfix){
+  	vector<string>op = {"+","-","*","/","%"};
+  	stack<double>total;
+  	
+  	double a,b,c;
+  	string temp;
+  	for(auto itr = postfix.begin(); itr!=postfix.end(); itr++){
+  		string str = *itr;
+  		if(isOperator(str[0]) && str.size() == 1){
+  			a = total.top();
+  			total.pop();
+  			b = total.top();
+  			total.pop();
+  			c = Operasi(a,b,temp);
+  			total.push(c);
+		  }else{
+		  	total.push(strtod((str).c_str(),NULL));
+		  }
+	  }
+	  return total.top();
+  }
+  
+  int main(){
+  	string str;
+  	getline(cin,str);
+  	
+  	vector<string>infix = stringToInfix(str);
+  	
+  	vector<string>postfix = infixToPostfix(infix);
+  	cout<<evaluate(postfix)<<endl;
+  	return 0;
+  }

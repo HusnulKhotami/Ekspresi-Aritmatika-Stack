@@ -75,25 +75,25 @@ if(!angka.empty()){
 }
 return infix;
 }
-vector<string>infixToPostfix(vector<string>infix){
-  stack<string> operand;
-  vector<string> postfix;
-  for(auto itr = infix.begin();itr!=infix.end();itr++){
+vector<string> infixToPostfix(vector<string>infix){
+  stack<string>operand;
+  vector<string>postfix;
+  for(auto itr = infix.begin(); itr != infix.end(); itr++){
     string str = *itr;
     if(isdigit(str[0]) || (str[0] == '-' && str.size() > 1 && isdigit(str[1]))){
       postfix.push_back(str);
     }else if(str == "("){
       operand.push(str);
     }else if(str == ")"){
-      while(!operand.empty() && operand.top() != "("){
+      while (!operand.empty() && operand.top() != "("){
         postfix.push_back(operand.top());
         operand.pop();
       }
       if(!operand.empty()){
-        operand.pop();
+        operand.top();
       }
     }else{
-      while(!operand.empty() && (operand.top() != "(" && (precedence(str) <= precedence(operand.top())))){
+      while(!operand.empty() && operand.top() != "("&& (precedence(str) <= precedence(operand.top()))){
         postfix.push_back(operand.top());
         operand.pop();
       }

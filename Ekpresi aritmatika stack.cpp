@@ -74,36 +74,34 @@ if(!angka.empty()){
 }
 return infix;
 }
-
 vector<string>infixToPostfix(vector<string>infix){
-   stack<string> operand;
-   vector<string>posfix;
-   for(auto itr = infix.begin(); itr!=infix.end(); itr++){
-       string str = *itr;
-      if(isdigit(str[0]||=='-' && str.size()> 1 && isdigit(str[1]))){
-         postfix.push_back(str);
-      }else if(str == "("){
-         operand.push(str);
-      }else if(str==")"){
-           while(!operand.empty() && operand.top() != "("){
-                 postfix.push_back(operand.top());
-                 operand.pop();
-        }
-        if(!operand.empty()){
-            operand.pop();
-        }
-     }else{
-         while(!operand.empty() && operand.top() !="(" && (precedence(str) <= precedence(operand.top()))){
-                postfix.push_back(operand.top());
-                operand.pop();
-        }
-        operand.push(str);
-     }
+  stack<string> operand;
+  vector<string> postfix;
+  for(auto itr = infix.begin();itr!=infix.end();itr++){
+    string str = *itr;
+    if(isdigit(str[0]) || (str[0] == '-' && str.size() > 1 && isdigit(str[1]))){
+      postfix.push_back(str);
+    }else if(str == "("){
+      operand.push(str);
+    }else if(str == ")"){
+      while(!operand.empty() && operand.top() != "("){
+        postfix.push_back(operand.top());
+        operand.pop();
+      }
+      if(!operand.empty()){
+        operand.pop();
+      }
+    }else{
+      while(!operand.empty() && (operand.top() != "(" && (precedence(str) <= precedence(operand.top())))){
+        postfix.push_back(operand.top());
+        operand.pop();
+      }
+      operand.push(str);
+    }
   }
-while(!operand.empty() && (operand.top() != "(" || operand.top() != ")")){
+  while(!operand.empty() && (operand.top() != "(" || operand.top() != ")")){
     postfix.push_back(operand.top());
     operand.pop();
   }
-return postfix;
-  
+  return postfix;
 }

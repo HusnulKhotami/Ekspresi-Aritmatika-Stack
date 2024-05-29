@@ -54,7 +54,7 @@ vector<string> stringToInfix(string str){
       infix.push_back("-1");
       infix.push_back("*");
     }
-    else if(isdigit(str[i+1] && str[i-1] == '(') || i == 0)){ 
+    else if((isdigit(str[i+1] && str[i-1] == '(') || i == 0)){ 
       angka += ch;
     }
     else{

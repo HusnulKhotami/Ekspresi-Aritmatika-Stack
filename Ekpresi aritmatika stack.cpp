@@ -1,36 +1,70 @@
-#include <iostream>
 #include <cmath>
+#include <cstudio>
 #include <vector>
+#include <iostream>
+#include <algorithm>
 #include <stack>
-#include <studio>
 using namespace std;
 
 bool isOperator(char ch) {
-  vector<char> op ={'+','-','*','/','%'};
-  return find(op.begin(), op.end(), ch) != op.end();
+vector<char> op = {'+', '-', '*', '/', '%'};
+return find(op.begin(), op.end(), ch) != op.end();
 }
 
-int precedence(string op){
-if(op == "+"|| op == "-") return 1;
-if(op == "*"|| op == "/"|| op == "%") return 2;
+int precedence(string op) {
+if (op == "+"||op == "-") return 1;
+if (op == "*"||op == "/"||op == "%") return 2;
 return 0;
 }
 
-double Operasi(double a, double b, string op){
+double Operasi (double a, double b, string op){
 double total = 0;
-if(op == "+"){
-total = b+a;
-}else if(op == "-"){
-total = b-a;
-}else if(op == "*"){
-total = b*a;
-}else if(op == "/"){
-total = b/a;
+if (op == "+"){
+total = b + a;
+}else if (op == "_"){
+total = b - a;
+}else if (op == "*"){
+total = b * a;
+}else if (op == "/"){
+total = b / a;
 }else if(op == "%"){
-total = (int)b % (int)a;
+total = (int) b % (int) a;
 }
 return total;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 vector<string> stringToInfix(string str){
   vector<string> infix;
